@@ -31,9 +31,9 @@ jobs:
       # Run the training script to create the model
     - name: Run training script
       run: |
-        python gmate_train_model.py
+        python gmat_train_model.py
 
       # Run the prediction script to predict on a file
     - name: Run prediction script
       run: |
-        python gmate_predict_model.py
+        python gmat_predict_model.py
