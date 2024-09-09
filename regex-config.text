@@ -1,0 +1,2 @@
+\d+  # Matches any sequence of digits
+\b(password|token|key)\b  # Matches specific sensitive words (password, token, key)
