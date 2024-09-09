@@ -1,1 +1,6 @@
-
+text,label
+"My password is password123",1
+"The token is abcd1234xyz",1
+"Here is some normal text with no sensitive data",0
+"Call 1234567890 for more details",0
+"The secret API key is 123456789abcdefg",1
