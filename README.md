@@ -1,6 +1,8 @@
 # Sensitive Data Detection Using Regex and Entropy
 
-This project demonstrates how to detect sensitive data in files using a machine learning model trained on regex-based and entropy-based features. The model is capable of identifying sensitive information, such as passwords, tokens, API keys, and numeric patterns (e.g., phone numbers), by processing the content of a file line by line.
+**Project Overview**: 
+   
+GreenMat tool  detect sensitive data in files using a machine learning model trained on regex-based and entropy-based features. The model is capable of identifying sensitive information, such as passwords, tokens, API keys, and numeric patterns (e.g., phone numbers), by processing the content of a file line by line.
 
 ## Features
 - **Regex-Based Feature Extraction**: Detects predefined patterns using regular expressions.
@@ -8,7 +10,7 @@ This project demonstrates how to detect sensitive data in files using a machine 
 - **Machine Learning Model**: A Random Forest classifier trained on combined regex and entropy features.
 - **Flexible Regex Patterns**: The regex patterns are stored in a separate JSON file (`regex_patterns.json`), making it easy to update or extend the detection rules.
 
-## Setup
+**Setup and Installation**: 
 
 ### Prerequisites
 
@@ -22,3 +24,10 @@ This project demonstrates how to detect sensitive data in files using a machine 
 
    ```bash
    pip install -r requirements.txt
+
+ **License**
+
+
+
+
+
