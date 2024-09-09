@@ -1,6 +1,8 @@
-# GreenMat
 
-# Sensitive Data Detection Using Regex and Entropy
+
+# GreenMat - Sensitive Data Detection Using Regex and Entropy
+
+[![Python application](https://github.com/greenmat007/greenmat/actions/workflows/python-app.yml/badge.svg)](https://github.com/greenmat007/greenmat/actions/workflows/python-app.yml)
 
 **Project Overview**: 
    
