@@ -23,7 +23,6 @@ def calculate_entropy(text):
     words = text.split()
     word_counts = Counter(words)
     probabilities = np.array(list(word_counts.values())) / len(words)
-    print(text+probabilities)
     return entropy(probabilities)
 
 # Function to process a single line and extract features
