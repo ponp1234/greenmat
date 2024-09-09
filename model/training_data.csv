@@ -154,3 +154,5 @@ text,label
 "api_key = 'gho_abcdefg1234567890abcdef1234567'",1
 "secret = 'abcdef123456abcdefabcdefabcdefabcdef'",1
 "#!/usr/bin/python",0
+" #!/usr/bin",0
+"print('')",0
