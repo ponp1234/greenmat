@@ -1,4 +1,3 @@
-\d{16,19}  # Credit card numbers
 (?i)(api[_-]?key[=:][ "\']?[a-zA-Z0-9-_]{16,})  # Generic API key
 AIza[0-9A-Za-z-_]{35}  # Google API key
 xox[baprs]-[0-9]{12}-[0-9]{12}-[a-zA-Z0-9]{24}  # Slack token
