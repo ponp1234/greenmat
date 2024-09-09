@@ -1,4 +1,5 @@
 import re
+import pandas as pd
 import numpy as np
 from scipy.stats import entropy
 from collections import Counter
@@ -27,23 +28,21 @@ def calculate_entropy(text):
     probabilities = np.array(list(word_counts.values())) / len(words)
     return entropy(probabilities)
 
+# Load the training dataset from a CSV file
+csv_file = 'model/training_data.csv'  # Path to the CSV file
+data = pd.read_csv(csv_file)
+
+# Separate the text and labels
+texts = data['text'].tolist()
+labels = data['label'].tolist()
+
 # Read regex patterns from the text file
-regex_txt_file = 'regex-config.txt'  # Path to the text file containing regex patterns
+regex_txt_file = 'regex_patterns.txt'  # Path to the text file containing regex patterns
 regex_patterns = read_regex_patterns(regex_txt_file)
 
-# Example dataset for training
-data = [
-    "My password is password123", 
-    "The token is abcd1234xyz",
-    "Here is some normal text with no sensitive data",
-    "Call 1234567890 for more details",
-    "The secret API key is 123456789abcdefg"
-]
-labels = [1, 1, 0, 0, 1]  # Binary labels: 1 = contains sensitive data, 0 = no sensitive data
-
 # Extract features from the training dataset
-regex_features = [regex_match_features(text, regex_patterns) for text in data]
-entropy_features = [[calculate_entropy(text)] for text in data]
+regex_features = [regex_match_features(text, regex_patterns) for text in texts]
+entropy_features = [[calculate_entropy(text)] for text in texts]
 X = np.hstack((np.array(regex_features), np.array(entropy_features)))
 
 # Split data into training and testing sets
