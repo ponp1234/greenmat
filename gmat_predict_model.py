@@ -44,7 +44,7 @@ regex_txt_file = 'regex_patterns.txt'  # Path to the text file containing regex 
 regex_patterns = read_regex_patterns(regex_txt_file)
 
 # File to search for sensitive data
-file_path = 'test_data/pass_file.txt'  # Replace with the path to your file
+file_path = 'test_data/'  # Replace with the path to your file
 
 # Process the file line by line and check for sensitive data
 with open(file_path, 'r', encoding='utf-8', errors='ignore') as file:
