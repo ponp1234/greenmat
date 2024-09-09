@@ -28,7 +28,7 @@ def calculate_entropy(text):
     return entropy(probabilities)
 
 # Read regex patterns from the text file
-regex_txt_file = 'regex_patterns.txt'  # Path to the text file containing regex patterns
+regex_txt_file = 'regex-config.txt'  # Path to the text file containing regex patterns
 regex_patterns = read_regex_patterns(regex_txt_file)
 
 # Example dataset for training
