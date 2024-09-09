@@ -40,7 +40,7 @@ model = joblib.load('sensitive_data_model.pkl')
 scaler = joblib.load('scaler.pkl')
 
 # Load regex patterns from the text file
-regex_txt_file = 'regex_config.txt'  # Path to the text file containing regex patterns
+regex_txt_file = 'regex-config.txt'  # Path to the text file containing regex patterns
 regex_patterns = read_regex_patterns(regex_txt_file)
 
 # File to search for sensitive data
