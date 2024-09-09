@@ -18,6 +18,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      # Install dependencies for Python, including distutils
+      - name: Install Python distutils
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3-distutils python3-venv
+
       # Set up Python environment
       - name: Set up Python
         uses: actions/setup-python@v2
