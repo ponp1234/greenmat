@@ -89,3 +89,67 @@ text,label
 "print('Logging complete')",0
 "api_key = 'gho_abcdefg1234567890abcdef1234567'",1
 "secret = 'abcdef123456abcdefabcdefabcdefabcdef'",1
+"api_key = 'sk_test_1234567890abcdef'",1
+"password = 'superSecretPassword123'",1
+"def safe_function(): pass",0
+"oauth_token = 'abcd1234token'",1
+"username = 'user123'",0
+"database_password = 'dbpass123'",1
+"token = 'xoxb-1234567890-abcdef123456'",1
+"ssl_key = '-----BEGIN PRIVATE KEY-----abcde12345-----END PRIVATE KEY-----'",1
+"print('Hello, world!')",0
+"API_KEY = 'AIzaSyD-12345abcdef'",1
+"aws_secret_access_key = 'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY'",1
+"print('No secrets here')",0
+"secret_key = 'mysecretkey1234'",1
+"username = 'john_doe'",0
+"db_password = 'P@ssw0rd1234!'",1
+"public_key = 'ssh-rsa AAAAB3NzaC1yc2E...'",1
+"sql_password = 'sqlSecretPassword!@#'",1
+"private_key = '-----BEGIN RSA PRIVATE KEY-----abcdefg-----END RSA PRIVATE KEY-----'",1
+"twilio_token = 'ACe9052e9ab7f90d6cc5555555555555'",1
+"auth_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'",1
+"db_user = 'admin'",0
+"refresh_token = 'abcdef0123456789abcdef0123456789'",1
+"username = 'guest_user'",0
+"firebase_token = 'AAAAAA-ABCDEF1234567_ABCD1234567abc'",1
+"email_password = 'password1234'",1
+"oauth_client_id = 'client-id-123456abcdef'",1
+"ssl_certificate = '-----BEGIN CERTIFICATE-----abcdefg...-----END CERTIFICATE-----'",1
+"function_with_no_secret = 'safe'",0
+"jwt_token = 'eyJhbGciOiJSUzI1NiIsInR...'",1
+"print('Logging complete')",0
+"api_key = 'gho_abcdefg1234567890abcdef1234567'",1
+"secret = 'abcdef123456abcdefabcdefabcdefabcdef'",1
+"api_key = 'sk_test_1234567890abcdef'",1
+"password = 'superSecretPassword123'",1
+"def safe_function(): pass",0
+"oauth_token = 'abcd1234token'",1
+"username = 'user123'",0
+"database_password = 'dbpass123'",1
+"token = 'xoxb-1234567890-abcdef123456'",1
+"ssl_key = '-----BEGIN PRIVATE KEY-----abcde12345-----END PRIVATE KEY-----'",1
+"print('Hello, world!')",0
+"API_KEY = 'AIzaSyD-12345abcdef'",1
+"aws_secret_access_key = 'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY'",1
+"print('No secrets here')",0
+"secret_key = 'mysecretkey1234'",1
+"username = 'john_doe'",0
+"db_password = 'P@ssw0rd1234!'",1
+"public_key = 'ssh-rsa AAAAB3NzaC1yc2E...'",1
+"sql_password = 'sqlSecretPassword!@#'",1
+"private_key = '-----BEGIN RSA PRIVATE KEY-----abcdefg-----END RSA PRIVATE KEY-----'",1
+"twilio_token = 'ACe9052e9ab7f90d6cc5555555555555'",1
+"auth_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'",1
+"db_user = 'admin'",0
+"refresh_token = 'abcdef0123456789abcdef0123456789'",1
+"username = 'guest_user'",0
+"firebase_token = 'AAAAAA-ABCDEF1234567_ABCD1234567abc'",1
+"email_password = 'password1234'",1
+"oauth_client_id = 'client-id-123456abcdef'",1
+"ssl_certificate = '-----BEGIN CERTIFICATE-----abcdefg...-----END CERTIFICATE-----'",1
+"function_with_no_secret = 'safe'",0
+"jwt_token = 'eyJhbGciOiJSUzI1NiIsInR...'",1
+"print('Logging complete')",0
+"api_key = 'gho_abcdefg1234567890abcdef1234567'",1
+"secret = 'abcdef123456abcdefabcdefabcdefabcdef'",1
