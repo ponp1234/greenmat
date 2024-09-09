@@ -4,3 +4,5 @@ text,label
 "Here is some normal text with no sensitive data",0
 "Call 1234567890 for more details",0
 "The secret API key is 123456789abcdefg",1
+"return data;",0
+"   ",0
