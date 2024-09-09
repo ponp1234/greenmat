@@ -32,6 +32,7 @@ jobs:
     - name: Run training script
       run: |
         python gmat_train_model.py
+        ls -lrt
 
       # Run the prediction script to predict on a file
     - name: Run prediction script
