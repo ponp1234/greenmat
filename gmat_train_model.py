@@ -56,6 +56,10 @@ X_test = scaler.transform(X_test)
 # Define and train a Random Forest model
 model = RandomForestClassifier(n_estimators=100, random_state=42)
 model.fit(X_train, y_train)
+# Evaluate the model on the test data
+y_pred = model.predict(X_test)
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Test Accuracy: {accuracy * 100:.2f}%")
 
 # Save the trained model and scaler to disk
 joblib.dump(model, 'sensitive_data_model.pkl')
