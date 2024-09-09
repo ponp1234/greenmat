@@ -1,8 +1,91 @@
 text,label
-"My password is password123",1
-"The token is abcd1234xyz",1
-"Here is some normal text with no sensitive data",0
-"Call 1234567890 for more details",0
-"The secret API key is 123456789abcdefg",1
-"return data;",0
-"   ",0
+"api_key = 'sk_test_1234567890abcdef'",1
+"password = 'superSecretPassword123'",1
+"def safe_function(): pass",0
+"oauth_token = 'abcd1234token'",1
+"username = 'user123'",0
+"database_password = 'dbpass123'",1
+"token = 'xoxb-1234567890-abcdef123456'",1
+"ssl_key = '-----BEGIN PRIVATE KEY-----abcde12345-----END PRIVATE KEY-----'",1
+"print('Hello, world!')",0
+"API_KEY = 'AIzaSyD-12345abcdef'",1
+"print('No secrets here')",0
+"aws_secret_access_key = 'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY'",1
+"def not_sensitive(): return 'no secret'",0
+"secret_key = 'mysecretkey1234'",1
+"db_password = 'P@ssw0rd1234!'",1
+"public_key = 'ssh-rsa AAAAB3NzaC1yc2E...'",1
+"sql_password = 'sqlSecretPassword!@#'",1
+"username = 'john_doe'",0
+"private_key = '-----BEGIN RSA PRIVATE KEY-----abcdefg-----END RSA PRIVATE KEY-----'",1
+"twilio_token = 'ACe9052e9ab7f90d6cc5555555555555'",1
+"password = 'secure_password_999'",1
+"auth_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'",1
+"random_function = 'no secrets inside'",0
+"app_secret_key = 'abcdef123456abcdef'",1
+"secret = 'abcdef123456abcdef1234567890abcdef'",1
+"print('This is a test script')",0
+"key = 'AKIAIOSFODNN7EXAMPLE'",1
+"refresh_token = 'abcdef0123456789abcdef0123456789'",1
+"db_user = 'admin'",0
+"print('Normal code block')",0
+"def function_with_no_secret(): return 'no secret'",0
+"oauth_token = 'ya29.c.Kp8Babcde1234567890abcdef1234...'",1
+"username = 'alice'",0
+"password = 'hunter2'",1
+"twilio_sid = 'ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'",1
+"def safe_function_2(): return None",0
+"api_key = 'AIzaSyD-abcdefg1234567'",1
+"token = 'ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'",1
+"ssl_certificate = '-----BEGIN CERTIFICATE-----abcdefg...-----END CERTIFICATE-----'",1
+"jwt_token = 'eyJhbGciOiJSUzI1NiIsImtpZCI6Ij...'",1
+"print('User login successful')",0
+"secret_key = 'abcdef123456abcdef'",1
+"def safe_code_block(): pass",0
+"database_password = 'superSecretDBPass'",1
+"firebase_token = 'AAAAAA-ABCDEF1234567_ABCD1234567abc'",1
+"admin_password = 'admin12345'",1
+"password = 'rootpassword!@#$'",1
+"username = 'guest_user'",0
+"no_sensitive_data = 'this is safe'",0
+"api_secret_key = 'sk_test_ABC1234567890'",1
+"print('Test script with no sensitive data')",0
+"api_key = 'pk_live_1234567890abcdef'",1
+"def harmless_function(): pass",0
+"ssl_key = 'ssh-rsa AAAAB3NzaC1yc2E...'",1
+"oauth_token = '4/t0ken123456abcdef'",1
+"print('This is just a print statement')",0
+"db_password = 'adminPassword123!'",1
+"refresh_token = '1/t0ken1234567890abcdef'",1
+"public_key = 'ssh-rsa AAAAB3NzaC1yc2E...'",1
+"aws_secret_access_key = 'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY'",1
+"username = 'developer_user'",0
+"password = 'developer_password_1234'",1
+"def safe_method(): return 'no secrets'",0
+"app_key = 'AKIAEXAMPLE1234567890'",1
+"secret = 'abcdef0123456789abcdef0123456789abcdef'",1
+"print('All operations successful')",0
+"sql_password = 'sqlPassword!@#$'",1
+"api_key = 'ghp_XYZabcdefghijk1234567890'",1
+"ssl_certificate = '-----BEGIN CERTIFICATE-----abcde...-----END CERTIFICATE-----'",1
+"function_with_no_secret = 'safe'",0
+"jwt_token = 'eyJhbGciOiJSUzI1NiIsInR...'",1
+"print('Normal logging output')",0
+"db_secret = 'abcdefabcdefabcdefabcdef123456'",1
+"aws_key = 'AKIA123456789EXAMPLE'",1
+"secret_key = 'mySecretKey123456!@#'",1
+"username = 'example_user'",0
+"db_admin_password = 'adminRoot123!'",1
+"auth_token = 'gho_exampletoken1234567890abcdef'",1
+"email_password = 'password1234'",1
+"oauth_client_id = 'client-id-123456abcdef'",1
+"password = 'superpassword!@#$'",1
+"print('Simple statement, no secrets')",0
+"ssl_key = '-----BEGIN PRIVATE KEY-----abcdefg...-----END PRIVATE KEY-----'",1
+"token = 'abcd1234TokenTest'",1
+"function_without_secret(): pass",0
+"firebase_key = 'abc:APA91bExampleFirebaseKey1234'",1
+"database_password = 'dbAdminPass!@#'",1
+"print('Logging complete')",0
+"api_key = 'gho_abcdefg1234567890abcdef1234567'",1
+"secret = 'abcdef123456abcdefabcdefabcdefabcdef'",1
