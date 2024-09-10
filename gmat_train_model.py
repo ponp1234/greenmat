@@ -20,6 +20,7 @@ def regex_match_features(text, regex_patterns):
     features = []
     for pattern in regex_patterns:
         features.append(int(bool(re.search(pattern, text))))
+        print[features]
     return features
 
 # Function to calculate entropy of a string based on word frequency
