@@ -1,0 +1,212 @@
+
+import os
+import json
+import requests
+from jinja2 import Template
+import openai
+from requests.auth import HTTPBasicAuth
+
+
+# =============================
+# Configuration
+# =============================
+# Prefer environment variables for secrets. Fallbacks keep the script runnable in a lab.
+ARA_API_URL = os.environ.get("ARA_API_URL", "https://your-ara-server.example.com/api/v1")
+ADO_BUILD_LABEL = os.environ.get("ADO_BUILD_LABEL", "buildid:76665438")
+OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY", "your-openai-api-key")
+ARA_USERNAME = os.environ.get("ARA_USERNAME", "rouser")
+ARA_PASSWORD = os.environ.get("ARA_PASSWORD", "rouser123")
+
+# Set OpenAI key if provided
+if OPENAI_API_KEY:
+    openai.api_key = OPENAI_API_KEY
+
+
+# =============================
+# ARA helper functions
+# =============================
+def _get(url: str, username: str, password: str) -> dict:
+    """Internal GET helper with auth and error handling."""
+    resp = requests.get(url, auth=HTTPBasicAuth(username, password), timeout=30)
+    resp.raise_for_status()
+    return resp.json()
+
+
+def get_playbooks_by_label(label: str, username: str, password: str) -> dict:
+    """Return playbooks filtered by label value."""
+    url = f"{ARA_API_URL}/playbooks?label={label}"
+    return _get(url, username, password)
+
+
+def get_tasks_for_playbook(playbook_id: str, username: str, password: str) -> dict:
+    """Return tasks for a given playbook id."""
+    url = f"{ARA_API_URL}/tasks?playbook={playbook_id}"
+    return _get(url, username, password)
+
+
+def get_results_for_task(task_id: str, username: str, password: str) -> dict:
+    """Return results for a given task id."""
+    url = f"{ARA_API_URL}/results/{task_id}"
+    return _get(url, username, password)
+
+
+# =============================
+# Report rendering
+# =============================
+def generate_html_report(playbook_data: list) -> str:
+    """Render a single page HTML report from the collected playbook data."""
+    template = Template("""
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>ARA Report</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; color: #333; }
+    .container { width: 90%; max-width: 1100px; margin: 24px auto; background: #fff; box-shadow: 0 0 10px rgba(0,0,0,0.08); padding: 24px; border-radius: 8px; }
+    h1 { color: #0066cc; border-bottom: 2px solid #0066cc; padding-bottom: 8px; }
+    h2 { color: #009933; border-bottom: 1px solid #009933; padding-bottom: 6px; }
+    ul { list-style-type: none; padding-left: 0; }
+    li { margin: 6px 0; padding: 10px; background: #e6f7ff; border-left: 5px solid #009933; border-radius: 6px; }
+    .result-failed  { background: #ffefef; border-left-color: #cc0000; }
+    .result-success { background: #efffec; border-left-color: #009933; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; white-space: pre-wrap; }
+    .pill { display: inline-block; padding: 2px 8px; font-size: 12px; border-radius: 12px; background: #fafafa; border: 1px solid #ddd; margin-left: 6px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>ANSIBLE Report for Label: {{ label }}</h1>
+    {% for playbook in playbook_data %}
+      <h2>Playbook: {{ playbook.name }}</h2>
+      <ul>
+        {% for task in playbook.tasks %}
+          <li>
+            <strong>Task:</strong> {{ task.name }}
+            <ul>
+              {% for result in task.results %}
+                {% set status = result.get('status') or result.get('status_text') or 'unknown' %}
+                {% set css = 'result-success' if status == 'ok' or status == 'changed' or status == 'success' else ('result-failed' if status == 'failed' else '') %}
+                <li class="{{ css }}">
+                  <div><strong>Host:</strong> {{ result.get('host', 'n/a') }} <span class="pill">Status: {{ status }}</span></div>
+                  {% if result.get('message') %}
+                    <div class="mono">{{ result.get('message') }}</div>
+                  {% elif result.get('content') %}
+                    <div class="mono">{{ result.get('content') }}</div>
+                  {% endif %}
+                </li>
+              {% endfor %}
+            </ul>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endfor %}
+  </div>
+</body>
+</html>
+""")
+    return template.render(label=ADO_BUILD_LABEL, playbook_data=playbook_data)
+
+
+# =============================
+# Optional: ask OpenAI for debug suggestions
+# =============================
+def get_debug_info_from_openai(error_message: str) -> str:
+    """Ask OpenAI for suggestions about an error message. Safe fallback if API is not configured."""
+    if not OPENAI_API_KEY:
+        return "OpenAI key not set. Skipping debug suggestion."
+    try:
+        resp = openai.Completion.create(
+            engine="text-davinci-003",
+            prompt=(
+                "You are a senior DevOps engineer. "
+                "Explain probable root causes and practical fixes for this Ansible or ARA error message. "
+                "Return a concise bullet list. "
+                f"\n\nError:\n{error_message}\n"
+            ),
+            max_tokens=200,
+            temperature=0.2,
+        )
+        return resp.choices[0].text.strip()
+    except Exception as e:
+        return f"OpenAI call failed: {e}"
+
+
+# =============================
+# Main
+# =============================
+def main() -> int:
+    try:
+        # 1. Fetch playbooks by label
+        playbooks = get_playbooks_by_label(ADO_BUILD_LABEL, ARA_USERNAME, ARA_PASSWORD)
+        results_list = playbooks.get("results", [])
+        playbook_data = []
+
+        # 2. For each playbook, fetch tasks then task results
+        for pb in results_list:
+            playbook_id = pb.get("id")
+            playbook_name = pb.get("name", f"playbook-{playbook_id}")
+            tasks_resp = get_tasks_for_playbook(str(playbook_id), ARA_USERNAME, ARA_PASSWORD)
+            task_items = tasks_resp.get("results", [])
+
+            task_data = []
+            for task in task_items:
+                task_id = task.get("id")
+                task_name = task.get("name", f"task-{task_id}")
+                results_resp = get_results_for_task(str(task_id), ARA_USERNAME, ARA_PASSWORD)
+                # The ARA results API can return either an object or {"results": [...]}
+                # Normalize to a list of dicts
+                if isinstance(results_resp, dict) and "results" in results_resp:
+                    results = results_resp["results"]
+                elif isinstance(results_resp, list):
+                    results = results_resp
+                else:
+                    results = [results_resp]
+
+                task_data.append(
+                    {
+                        "name": task_name,
+                        "results": results,
+                    }
+                )
+
+            playbook_data.append(
+                {
+                    "name": playbook_name,
+                    "tasks": task_data,
+                }
+            )
+
+        print("ARA data retrieved successfully")
+
+        # 3. Build HTML report
+        html_report = generate_html_report(playbook_data)
+        out_path = "ara_report.html"
+        with open(out_path, "w", encoding="utf-8") as f:
+            f.write(html_report)
+        print(f"HTML report written to {out_path}")
+
+        # 4. Scan for failed results and optionally ask OpenAI to help
+        for playbook in playbook_data:
+            for task in playbook["tasks"]:
+                for result in task["results"]:
+                    status = result.get("status") or result.get("status_text")
+                    if status == "failed":
+                        error_message = result.get("message") or result.get("content") or json.dumps(result, indent=2)
+                        print("A failure was detected. Asking for debug suggestions...")
+                        advice = get_debug_info_from_openai(error_message)
+                        print("\nDebug suggestions\n")
+                        print(advice)
+
+        return 0
+
+    except requests.RequestException as e:
+        print(f"Error connecting to ARA server: {e}")
+        return 2
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
+        return 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
